@@ -9,7 +9,8 @@ defmodule Identicon do
   def build_grid(%Identicon.Image{hex: hex} = image) do
     hex
     |> Enum.chunk(3)
-    |> mirror_row
+    |> Enum.map(&mirror_row/1)
+    # to pass a func reference to another func, prefix w `&`, then `/1` w the num of func args
   end
 
   def mirror_row(row) do
