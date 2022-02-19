@@ -5,9 +5,9 @@ defmodule Identicon do
     |> pick_color
   end
 
-  def pick_color(image) do
-    %Identicon.Image{hex: hex_list} = image
-    hex_list
+  def pick_color(%Identicon.Image{hex: [r, g, b | _tail]} = image) do
+    # `| _tail` lets us discard the other list items while still pattern matching
+    %Identicon.Image{image | color: {r, g, b}}
   end
 
   def hash_input(input) do
